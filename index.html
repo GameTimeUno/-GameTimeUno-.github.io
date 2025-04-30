@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Team Points Table</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            padding: 10px;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        h1 {
+            text-align: center;
+            margin: 10px 0 15px;
+            color: #333;
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+
+        .table-container {
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            background-color: white;
+        }
+
+        .points-table {
+            width: 100%;
+            min-width: 360px;
+            border-collapse: collapse;
+            table-layout: fixed;
+        }
+
+        .points-table thead {
+            background-color: #2c3e50;
+            color: white;
+            position: sticky;
+            top: 0;
+        }
+
+        .points-table th {
+            padding: 8px 5px;
+            text-align: center;
+            font-weight: 500;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+        }
+
+        .points-table td {
+            padding: 6px 4px;
+            text-align: center;
+            border-bottom: 1px solid #e0e0e0;
+            font-size: 0.75rem;
+            word-break: break-word;
+        }
+
+        .points-table tbody tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .rank {
+            font-weight: bold;
+            width: 40px;
+            font-size: 0.8rem;
+        }
+
+        .team-name {
+            font-weight: 500;
+            text-align: left;
+            padding-left: 5px;
+            width: 80px;
+        }
+
+        .green {
+            color: #27ae60;
+        }
+
+        .blue {
+            color: #3498db;
+        }
+
+        .red {
+            color: #e74c3c;
+        }
+
+        .purple {
+            color: #9b59b6;
+        }
+
+        .yellow {
+            color: #f1c40f;
+        }
+
+        .black {
+            color: #2c3e50;
+        }
+
+        .players-list {
+            text-align: left;
+            padding-left: 5px;
+            width: 120px;
+        }
+
+        .player {
+            padding: 1px 0;
+            font-size: 0.65rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .points {
+            font-weight: bold;
+            width: 40px;
+            font-size: 0.8rem;
+        }
+
+        .team-header {
+            display: flex;
+            align-items: center;
+        }
+
+        .team-color {
+            width: 10px;
+            height: 10px;
+            min-width: 10px;
+            border-radius: 50%;
+            margin-right: 5px;
+            display: inline-block;
+        }
+
+        .green-bg {
+            background-color: #27ae60;
+        }
+
+        .blue-bg {
+            background-color: #3498db;
+        }
+
+        .red-bg {
+            background-color: #e74c3c;
+        }
+
+        .purple-bg {
+            background-color: #9b59b6;
+        }
+
+        .yellow-bg {
+            background-color: #f1c40f;
+        }
+
+        .black-bg {
+            background-color: #2c3e50;
+        }
+
+        /* Very small screens optimization */
+        @media (max-width: 400px) {
+            .points-table th {
+                font-size: 0.65rem;
+                padding: 6px 3px;
+            }
+
+            .points-table td {
+                font-size: 0.7rem;
+                padding: 4px 2px;
+            }
+
+            .player {
+                font-size: 0.6rem;
+            }
+
+            .team-color {
+                width: 8px;
+                height: 8px;
+                min-width: 8px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Team Points Table</h1>
+
+    <div class="table-container">
+        <table class="points-table">
+            <thead>
+                <tr>
+                    <th>Rank</th>
+                    <th>Team</th>
+                    <th>Players</th>
+                    <th>Pts</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="rank">1</td>
+                    <td class="team-name green">
+                        <div class="team-header">
+                            <span class="team-color green-bg"></span>
+                            Green
+                        </div>
+                    </td>
+                    <td class="players-list">
+                        <div class="player">1. Alex Johnson</div>
+                        <div class="player">2. Sarah Miller</div>
+                        <div class="player">3. Michael Brown</div>
+                        <div class="player">4. Emily Davis</div>
+                        <div class="player">5. David Wilson</div>
+                        <div class="player">6. Jessica Taylor</div>
+                    </td>
+                    <td class="points">120</td>
+                </tr>
+                <tr>
+                    <td class="rank">2</td>
+                    <td class="team-name blue">
+                        <div class="team-header">
+                            <span class="team-color blue-bg"></span>
+                            Blue
+                        </div>
+                    </td>
+                    <td class="players-list">
+                        <div class="player">1. Robert Smith</div>
+                        <div class="player">2. Jennifer Lee</div>
+                        <div class="player">3. Chris Martin</div>
+                        <div class="player">4. Amanda Clark</div>
+                        <div class="player">5. Daniel R.</div>
+                        <div class="player">6. Michelle L.</div>
+                    </td>
+                    <td class="points">115</td>
+                </tr>
+                <tr>
+                    <td class="rank">3</td>
+                    <td class="team-name red">
+                        <div class="team-header">
+                            <span class="team-color red-bg"></span>
+                            Red
+                        </div>
+                    </td>
+                    <td class="players-list">
+                        <div class="player">1. Matt White</div>
+                        <div class="player">2. Liz Hall</div>
+                        <div class="player">3. Kevin Allen</div>
+                        <div class="player">4. Steph Young</div>
+                        <div class="player">5. Richard K.</div>
+                        <div class="player">6. Nicole Scott</div>
+                    </td>
+                    <td class="points">105</td>
+                </tr>
+                <tr>
+                    <td class="rank">4</td>
+                    <td class="team-name purple">
+                        <div class="team-header">
+                            <span class="team-color purple-bg"></span>
+                            Purple
+                        </div>
+                    </td>
+                    <td class="players-list">
+                        <div class="player">1. Josh Wright</div>
+                        <div class="player">2. Sam Adams</div>
+                        <div class="player">3. Andrew N.</div>
+                        <div class="player">4. Rebecca G.</div>
+                        <div class="player">5. Thomas C.</div>
+                        <div class="player">6. Laura M.</div>
+                    </td>
+                    <td class="points">95</td>
+                </tr>
+                <tr>
+                    <td class="rank">5</td>
+                    <td class="team-name yellow">
+                        <div class="team-header">
+                            <span class="team-color yellow-bg"></span>
+                            Yellow
+                        </div>
+                    </td>
+                    <td class="players-list">
+                        <div class="player">1. James R.</div>
+                        <div class="player">2. Megan P.</div>
+                        <div class="player">3. Brian Evans</div>
+                        <div class="player">4. Rachel T.</div>
+                        <div class="player">5. Jason P.</div>
+                        <div class="player">6. Kim Collins</div>
+                    </td>
+                    <td class="points">85</td>
+                </tr>
+                <tr>
+                    <td class="rank">6</td>
+                    <td class="team-name black">
+                        <div class="team-header">
+                            <span class="team-color black-bg"></span>
+                            Black
+                        </div>
+                    </td>
+                    <td class="players-list">
+                        <div class="player">1. Charles E.</div>
+                        <div class="player">2. Hannah S.</div>
+                        <div class="player">3. Edward S.</div>
+                        <div class="player">4. Ashley M.</div>
+                        <div class="player">5. Ronald R.</div>
+                        <div class="player">6. Victoria C.</div>
+                    </td>
+                    <td class="points">75</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>
