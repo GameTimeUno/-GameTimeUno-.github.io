@@ -3,85 +3,185 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Team Points Table</title>
+    <meta name="viewport" content="width=337, height=657, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Game Time - Team Points</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
         }
+
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
         body {
             background-color: #f5f5f5;
-            padding: 10px;
+            padding: 5px;
             -webkit-text-size-adjust: 100%;
+            background-image: url('https://images.unsplash.com/photo-1519751138087-5bf79df62d5b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            background-blend-mode: overlay;
+            background-color: rgba(245, 245, 245, 0.9);
+            min-height: 100vh;
+            overflow-x: hidden;
         }
 
-        h1 {
+        .main-container {
+            width: 100%;
+            max-width: 337px;
+            margin: 0 auto;
+            padding: 5px;
+            position: relative;
+        }
+
+        .game-time-heading {
             text-align: center;
-            margin: 10px 0 15px;
-            color: #333;
-            font-size: 1.4rem;
+            margin: 5px 0;
+            font-size: 2rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            color: #2c3e50;
+            text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.1);
+            letter-spacing: 1px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .game-time {
+            display: inline-block;
+        }
+
+        .game-time span {
+            display: inline-block;
+            position: relative;
+            animation: jump 1.2s ease infinite alternate;
+            transform-origin: bottom center;
+        }
+
+        /* Individual letter animations */
+        .game-time span:nth-child(1) {
+            animation-delay: 0.1s;
+            color: #e74c3c;
+        }
+
+        .game-time span:nth-child(2) {
+            animation-delay: 0.2s;
+            color: #f1c40f;
+        }
+
+        .game-time span:nth-child(3) {
+            animation-delay: 0.3s;
+            color: #27ae60;
+        }
+
+        .game-time span:nth-child(4) {
+            animation-delay: 0.4s;
+            color: #3498db;
+        }
+
+        .game-time span:nth-child(6) {
+            animation-delay: 0.5s;
+            color: #9b59b6;
+        }
+
+        .game-time span:nth-child(7) {
+            animation-delay: 0.6s;
+            color: #e74c3c;
+        }
+
+        .game-time span:nth-child(8) {
+            animation-delay: 0.7s;
+            color: #f1c40f;
+        }
+
+        @keyframes jump {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        .sub-heading {
+            text-align: center;
+            margin: 0 0 10px;
+            color: #2c3e50;
+            font-size: 1rem;
             font-weight: 600;
+            position: relative;
+            z-index: 2;
+        }
+
+        .sub-heading::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, #27ae60, #3498db, #e74c3c, #9b59b6, #f1c40f);
+            margin: 5px auto 0;
+            border-radius: 2px;
         }
 
         .table-container {
             width: 100%;
             overflow-x: auto;
             -webkit-overflow-scrolling: touch;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
             border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: rgba(255, 255, 255, 0.95);
+            position: relative;
+            z-index: 2;
         }
 
         .points-table {
             width: 100%;
-            min-width: 360px;
             border-collapse: collapse;
             table-layout: fixed;
         }
 
         .points-table thead {
-            background-color: #2c3e50;
+            background: linear-gradient(135deg, #2c3e50, #4a6491);
             color: white;
-            position: sticky;
-            top: 0;
         }
 
         .points-table th {
-            padding: 8px 5px;
+            padding: 6px 4px;
             text-align: center;
             font-weight: 500;
-            font-size: 0.7rem;
+            font-size: 0.6rem;
             text-transform: uppercase;
         }
 
         .points-table td {
-            padding: 6px 4px;
+            padding: 5px 3px;
             text-align: center;
-            border-bottom: 1px solid #e0e0e0;
-            font-size: 0.75rem;
-            word-break: break-word;
+            border-bottom: 1px solid rgba(224, 224, 224, 0.5);
+            font-size: 0.65rem;
         }
 
         .points-table tbody tr:nth-child(even) {
-            background-color: #f9f9f9;
+            background-color: rgba(249, 249, 249, 0.7);
         }
 
         .rank {
             font-weight: bold;
-            width: 40px;
-            font-size: 0.8rem;
+            width: 30px;
+            font-size: 0.7rem;
         }
 
         .team-name {
             font-weight: 500;
             text-align: left;
             padding-left: 5px;
-            width: 80px;
+            width: 70px;
         }
 
         .green {
@@ -111,12 +211,12 @@
         .players-list {
             text-align: left;
             padding-left: 5px;
-            width: 120px;
+            width: 100px;
         }
 
         .player {
-            padding: 1px 0;
-            font-size: 0.65rem;
+            padding: 2px 0;
+            font-size: 0.6rem;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
@@ -124,8 +224,8 @@
 
         .points {
             font-weight: bold;
-            width: 40px;
-            font-size: 0.8rem;
+            width: 30px;
+            font-size: 0.7rem;
         }
 
         .team-header {
@@ -134,9 +234,9 @@
         }
 
         .team-color {
-            width: 10px;
-            height: 10px;
-            min-width: 10px;
+            width: 8px;
+            height: 8px;
+            min-width: 8px;
             border-radius: 50%;
             margin-right: 5px;
             display: inline-block;
@@ -166,156 +266,230 @@
             background-color: #2c3e50;
         }
 
-        /* Very small screens optimization */
-        @media (max-width: 400px) {
-            .points-table th {
-                font-size: 0.65rem;
-                padding: 6px 3px;
+        /* UNO Card Animations */
+        .uno-card {
+            position: absolute;
+            width: 30px;
+            height: 45px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            z-index: 1;
+            opacity: 0.7;
+            animation: fallingCard linear infinite;
+        }
+
+        @keyframes fallingCard {
+            0% {
+                transform: translateY(-100px) rotate(0deg);
+                opacity: 0;
             }
 
-            .points-table td {
-                font-size: 0.7rem;
-                padding: 4px 2px;
+            10% {
+                opacity: 0.7;
             }
 
-            .player {
-                font-size: 0.6rem;
+            90% {
+                opacity: 0.7;
             }
 
-            .team-color {
-                width: 8px;
-                height: 8px;
-                min-width: 8px;
+            100% {
+                transform: translateY(657px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Trophy icon for first place */
+        .first-place::after {
+            content: '🏆';
+            margin-left: 3px;
+            animation: bounce 1s infinite alternate;
+        }
+
+        @keyframes bounce {
+            from {
+                transform: translateY(0);
+            }
+
+            to {
+                transform: translateY(-3px);
             }
         }
     </style>
 </head>
 
 <body>
-    <h1>Team Points Table</h1>
+    <div class="main-container">
+        <!-- UNO Cards will be inserted here by JavaScript -->
 
-    <div class="table-container">
-        <table class="points-table">
-            <thead>
-                <tr>
-                    <th>Rank</th>
-                    <th>Team</th>
-                    <th>Players</th>
-                    <th>Pts</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td class="rank">1</td>
-                    <td class="team-name green">
-                        <div class="team-header">
-                            <span class="team-color green-bg"></span>
-                            Green
-                        </div>
-                    </td>
-                    <td class="players-list">
-                        <div class="player">1. Alex Johnson</div>
-                        <div class="player">2. Sarah Miller</div>
-                        <div class="player">3. Michael Brown</div>
-                        <div class="player">4. Emily Davis</div>
-                        <div class="player">5. David Wilson</div>
-                        <div class="player">6. Jessica Taylor</div>
-                    </td>
-                    <td class="points">120</td>
-                </tr>
-                <tr>
-                    <td class="rank">2</td>
-                    <td class="team-name blue">
-                        <div class="team-header">
-                            <span class="team-color blue-bg"></span>
-                            Blue
-                        </div>
-                    </td>
-                    <td class="players-list">
-                        <div class="player">1. Robert Smith</div>
-                        <div class="player">2. Jennifer Lee</div>
-                        <div class="player">3. Chris Martin</div>
-                        <div class="player">4. Amanda Clark</div>
-                        <div class="player">5. Daniel R.</div>
-                        <div class="player">6. Michelle L.</div>
-                    </td>
-                    <td class="points">115</td>
-                </tr>
-                <tr>
-                    <td class="rank">3</td>
-                    <td class="team-name red">
-                        <div class="team-header">
-                            <span class="team-color red-bg"></span>
-                            Red
-                        </div>
-                    </td>
-                    <td class="players-list">
-                        <div class="player">1. Matt White</div>
-                        <div class="player">2. Liz Hall</div>
-                        <div class="player">3. Kevin Allen</div>
-                        <div class="player">4. Steph Young</div>
-                        <div class="player">5. Richard K.</div>
-                        <div class="player">6. Nicole Scott</div>
-                    </td>
-                    <td class="points">105</td>
-                </tr>
-                <tr>
-                    <td class="rank">4</td>
-                    <td class="team-name purple">
-                        <div class="team-header">
-                            <span class="team-color purple-bg"></span>
-                            Purple
-                        </div>
-                    </td>
-                    <td class="players-list">
-                        <div class="player">1. Josh Wright</div>
-                        <div class="player">2. Sam Adams</div>
-                        <div class="player">3. Andrew N.</div>
-                        <div class="player">4. Rebecca G.</div>
-                        <div class="player">5. Thomas C.</div>
-                        <div class="player">6. Laura M.</div>
-                    </td>
-                    <td class="points">95</td>
-                </tr>
-                <tr>
-                    <td class="rank">5</td>
-                    <td class="team-name yellow">
-                        <div class="team-header">
-                            <span class="team-color yellow-bg"></span>
-                            Yellow
-                        </div>
-                    </td>
-                    <td class="players-list">
-                        <div class="player">1. James R.</div>
-                        <div class="player">2. Megan P.</div>
-                        <div class="player">3. Brian Evans</div>
-                        <div class="player">4. Rachel T.</div>
-                        <div class="player">5. Jason P.</div>
-                        <div class="player">6. Kim Collins</div>
-                    </td>
-                    <td class="points">85</td>
-                </tr>
-                <tr>
-                    <td class="rank">6</td>
-                    <td class="team-name black">
-                        <div class="team-header">
-                            <span class="team-color black-bg"></span>
-                            Black
-                        </div>
-                    </td>
-                    <td class="players-list">
-                        <div class="player">1. Charles E.</div>
-                        <div class="player">2. Hannah S.</div>
-                        <div class="player">3. Edward S.</div>
-                        <div class="player">4. Ashley M.</div>
-                        <div class="player">5. Ronald R.</div>
-                        <div class="player">6. Victoria C.</div>
-                    </td>
-                    <td class="points">75</td>
-                </tr>
-            </tbody>
-        </table>
+        <h1 class="game-time-heading">
+            <div class="game-time">
+                <span>G</span>
+                <span>A</span>
+                <span>M</span>
+                <span>E</span>
+                <span>&nbsp;</span>
+                <span>T</span>
+                <span>I</span>
+                <span>M</span>
+                <span>E</span>
+            </div>
+        </h1>
+
+        <h2 class="sub-heading">Team Points Table</h2>
+
+        <div class="table-container">
+            <table class="points-table">
+                <thead>
+                    <tr>
+                        <th>Rank</th>
+                        <th>Team</th>
+                        <th>Players</th>
+                        <th>Pts</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="rank first-place">1</td>
+                        <td class="team-name blue">
+                            <div class="team-header">
+                                <span class="team-color blue-bg"></span>
+                                Blue
+                            </div>
+                        </td>
+                        <td class="players-list">
+                            <div class="player">1. chiti-4 </div>
+                            <div class="player">2. Seven-5 </div>
+                        </td>
+                        <td class="points">9</td>
+                    </tr>
+                    <tr>
+                        <td class="rank">2</td>
+                        <td class="team-name green">
+                            <div class="team-header">
+                                <span class="team-color green-bg"></span>
+                                Green
+                            </div>
+                        </td>
+                        <td class="players-list">
+                            <div class="player">1. Aditya 5</div>
+                            <div class="player">2. hmk-2</div>
+                        </td>
+                        <td class="points">7</td>
+                    </tr>
+                    <tr>
+                        <td class="rank">3</td>
+                        <td class="team-name yellow">
+                            <div class="team-header">
+                                <span class="team-color yellow-bg"></span>
+                                Yellow
+                            </div>
+                        </td>
+                        <td class="players-list">
+                            <div class="player">1. Suii-1</div>
+                            <div class="player">1. Priya -4 </div>
+
+                        </td>
+                        <td class="points">5</td>
+                    </tr>
+                    <tr>
+                        <td class="rank">4</td>
+                        <td class="team-name red">
+                            <div class="team-header">
+                                <span class="team-color red-bg"></span>
+                                Red
+                            </div>
+                        </td>
+                        <td class="players-list">
+                            <div class="player">1. Top-g -3</div>
+                            <div class="player">2. Akku-1 </div>
+                        </td>
+                        <td class="points">4</td>
+                    </tr>
+                    <tr>
+                        <td class="rank">5</td>
+                        <td class="team-name black">
+                            <div class="team-header">
+                                <span class="team-color black-bg"></span>
+                                Black
+                            </div>
+                        </td>
+                        <td class="players-list">
+                            <div class="player">1. Orhaan-0</div>
+                            <div class="player">2. Aaju-3 </div>
+                        </td>
+                        <td class="points">3</td>
+                    </tr>
+                    <tr>
+                        <td class="rank">6</td>
+                        <td class="team-name purple">
+                            <div class="team-header">
+                                <span class="team-color purple-bg"></span>
+                                Purple
+                            </div>
+                        </td>
+                        <td class="players-list">
+                            <div class="player">1. Malu-2</div>
+                            <div class="player">2. Sam-0 </div>
+                        </td>
+                        <td class="points">2</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
+
+    <script>
+        // Create UNO card elements
+        document.addEventListener('DOMContentLoaded', function () {
+            const colors = ['red', 'blue', 'green', 'yellow'];
+            const types = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'skip', 'reverse', 'draw2'];
+
+            function createUnoCard() {
+                const card = document.createElement('div');
+                card.className = 'uno-card';
+
+                // Random position and animation duration
+                const leftPos = Math.random() * 300;
+                const duration = 5 + Math.random() * 10;
+                const delay = Math.random() * 5;
+
+                // Random card type
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                const type = types[Math.floor(Math.random() * types.length)];
+
+                card.style.left = leftPos + 'px';
+                card.style.animationDuration = duration + 's';
+                card.style.animationDelay = delay + 's';
+                card.style.backgroundImage = `url('https://raw.githubusercontent.com/sanfranschools/UNO/master/images/${color}_${type}.png')`;
+
+                document.querySelector('.main-container').appendChild(card);
+
+                // Remove card after animation completes
+                setTimeout(() => {
+                    card.remove();
+                }, (duration + delay) * 1000);
+            }
+
+            // Create initial cards
+            for (let i = 0; i < 5; i++) {
+                createUnoCard();
+            }
+
+            // Keep creating new cards periodically
+            setInterval(createUnoCard, 2000);
+
+            // Add hover effect to table rows
+            const rows = document.querySelectorAll('.points-table tbody tr');
+            rows.forEach(row => {
+                row.addEventListener('mouseenter', () => {
+                    row.style.transform = 'scale(1.01)';
+                });
+                row.addEventListener('mouseleave', () => {
+                    row.style.transform = 'scale(1)';
+                });
+            });
+        });
+    </script>
 </body>
 
 </html>
